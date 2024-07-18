@@ -15,8 +15,7 @@ import java.io.File;
 
 public class SeleniumTest {
     private WebDriver webDriver;
-   // private WebDriverWait wait;
-    private String path;
+  
     
     @BeforeEach
     public void setUp() {
@@ -26,13 +25,8 @@ public class SeleniumTest {
        
         // Get file
         File file = new File("src/main/java/com/revature/index.html");
-        path = "file://" + file.getAbsolutePath();
+        String path = "file://" + file.getAbsolutePath();
 
-        // Create a new ChromeDriver instance
-        ChromeOptions options = new ChromeOptions();
-        
-        options.addArguments("headless");
-        webDriver = new ChromeDriver(options);
         
         ChromeOptions options = new ChromeOptions();
         options.addArguments("headless");
@@ -49,58 +43,58 @@ public class SeleniumTest {
 
     @Test
     public void testRegistrationForm() {
-        driver.findElement(By.id("name")).sendKeys("John Doe");
-        driver.findElement(By.id("email")).sendKeys("john@example.com");
-        driver.findElement(By.id("password")).sendKeys("password123");
+        webDriver.findElement(By.id("name")).sendKeys("John Doe");
+        webDriver.findElement(By.id("email")).sendKeys("john@example.com");
+        webDriver.findElement(By.id("password")).sendKeys("password123");
 
-        Select genderSelect = new Select(driver.findElement(By.id("gender")));
+        Select genderSelect = new Select(webDriver.findElement(By.id("gender")));
         genderSelect.selectByValue("male");
 
-        driver.findElement(By.id("birthdate")).sendKeys("1990-01-01");
-        driver.findElement(By.id("terms")).click();
-        driver.findElement(By.xpath("//button[text()='Register']")).click();
+        webDriver.findElement(By.id("birthdate")).sendKeys("1990-01-01");
+        webDriver.findElement(By.id("terms")).click();
+        webDriver.findElement(By.xpath("//button[text()='Register']")).click();
 
         // Add assertions here to verify successful registration
     }
 
     @Test
     public void testLoginForm() {
-        driver.findElement(By.id("loginEmail")).sendKeys("user@example.com");
-        driver.findElement(By.id("loginPassword")).sendKeys("password123");
-        driver.findElement(By.xpath("//button[text()='Login']")).click();
+        webDriver.findElement(By.id("loginEmail")).sendKeys("user@example.com");
+        webDriver.findElement(By.id("loginPassword")).sendKeys("password123");
+        webDriver.findElement(By.xpath("//button[text()='Login']")).click();
 
         // Add assertions here to verify successful login
     }
 
     @Test
     public void testFeedbackForm() {
-        driver.findElement(By.id("comments")).sendKeys("Great service!");
-        driver.findElement(By.id("rating")).sendKeys("5");
-        driver.findElement(By.xpath("//button[text()='Submit Feedback']")).click();
+        webDriver.findElement(By.id("comments")).sendKeys("Great service!");
+        webDriver.findElement(By.id("rating")).sendKeys("5");
+        webDriver.findElement(By.xpath("//button[text()='Submit Feedback']")).click();
 
         // Add assertions here to verify successful feedback submission
     }
 
     @Test
     public void testFormValidation() {
-        driver.findElement(By.xpath("//button[text()='Register']")).click();
-        String nameError = driver.findElement(By.id("name")).getAttribute("validationMessage");
+        webDriver.findElement(By.xpath("//button[text()='Register']")).click();
+        String nameError = webDriver.findElement(By.id("name")).getAttribute("validationMessage");
         assertNotEquals("", nameError);
 
-        driver.findElement(By.id("email")).sendKeys("invalid-email");
-        driver.findElement(By.xpath("//button[text()='Register']")).click();
-        String emailError = driver.findElement(By.id("email")).getAttribute("validationMessage");
+        webDriver.findElement(By.id("email")).sendKeys("invalid-email");
+        webDriver.findElement(By.xpath("//button[text()='Register']")).click();
+        String emailError = webDriver.findElement(By.id("email")).getAttribute("validationMessage");
         assertNotEquals("", emailError);
 
-        driver.findElement(By.id("password")).clear();
-        driver.findElement(By.xpath("//button[text()='Register']")).click();
-        String passwordError = driver.findElement(By.id("password")).getAttribute("validationMessage");
+        webDriver.findElement(By.id("password")).clear();
+        webDriver.findElement(By.xpath("//button[text()='Register']")).click();
+        String passwordError = webDriver.findElement(By.id("password")).getAttribute("validationMessage");
         assertNotEquals("", passwordError);
     }
 
     @Test
     public void testGenderSelect() {
-        Select genderSelect = new Select(driver.findElement(By.id("gender")));
+        Select genderSelect = new Select(webDriver.findElement(By.id("gender")));
 
         assertEquals("Male", genderSelect.getFirstSelectedOption().getText());
 
