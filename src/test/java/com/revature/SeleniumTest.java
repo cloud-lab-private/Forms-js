@@ -10,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import org.openqa.selenium.support.ui.Select;
 import java.io.File;
 
 public class SeleniumTest {
@@ -67,9 +67,9 @@ public class SeleniumTest {
     // 3. Check user data in database (if possible)
     // This may require database access within your test framework (e.g., using JPA or JDBC)
     // Here's an example using a mock database (replace with your actual logic)
-    User expectedUser = new User("John Doe", "john@example.com", "password123", /* other user data */);
-    User actualUser = /* Your logic to retrieve user from database based on email or other identifier */;
-    assertEquals(expectedUser, actualUser);
+    // User expectedUser = new User("John Doe", "john@example.com", "password123", /* other user data */);
+    // User actualUser = /* Your logic to retrieve user from database based on email or other identifier */;
+    // assertEquals(expectedUser, actualUser);
     }
 
 
