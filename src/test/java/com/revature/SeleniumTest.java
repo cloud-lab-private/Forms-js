@@ -13,8 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.openqa.selenium.support.ui.Select;
 import java.io.File;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
+
 
 public class SeleniumTest {
     private WebDriver webDriver;
@@ -24,26 +23,17 @@ public class SeleniumTest {
     public void setUp() {
      
         
-        // System.setProperty("webdriver.chrome.driver", "driver/chromedriver");//linux_64
+        System.setProperty("webdriver.chrome.driver", "driver/chromedriver");//linux_64
        
-        // // Get file
-        // File file = new File("src/main/java/com/revature/index.html");
-        // String path = "file://" + file.getAbsolutePath();
-
-        
-        // ChromeOptions options = new ChromeOptions();
-        // options.addArguments("headless");
-        // webDriver = new ChromeDriver(options);
-        System.setProperty("webdriver.edge.driver", "driver/msedgedriver");//linux_64
-
         // Get file
-        File file = new File("Arrays.html");
+        File file = new File("src/main/java/com/revature/index.html");
         String path = "file://" + file.getAbsolutePath();
 
         
-        EdgeOptions options = new EdgeOptions();
+        ChromeOptions options = new ChromeOptions();
         options.addArguments("headless");
-        webDriver = new EdgeDriver(options);
+        webDriver = new ChromeDriver(options);
+        
 
         // Open the HTML file
         webDriver.get(path);
