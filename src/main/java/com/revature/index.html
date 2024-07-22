@@ -60,6 +60,28 @@
     <div class="success-message" style="display: none;"></div>
     <div id="loggedInUserName" style="display: none;"></div>
 
-    <script src="Forms.js"></script>
+    <script>
+    // Add event listeners and form handling logic here
+    document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        document.querySelector('.success-message').textContent = 'Registration successful!';
+        document.querySelector('.success-message').style.display = 'block';
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        document.querySelector('.success-message').textContent = 'Login successful!';
+        document.querySelector('.success-message').style.display = 'block';
+        document.getElementById('loggedInUserName').textContent = 'John Doe';
+        document.getElementById('loggedInUserName').style.display = 'block';
+    });
+
+    document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        document.querySelector('.success-message').textContent = 'Feedback submitted!';
+        document.querySelector('.success-message').style.display = 'block';
+        event.target.querySelector('button[type="submit"]').disabled = true;
+    });
+    </script>
 </body>
 </html>
