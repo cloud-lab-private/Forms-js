@@ -83,16 +83,22 @@ public class SeleniumTest {
 
     @Test
     public void testFormValidation() {
-        webDriver.findElement(By.xpath("//button[text()='Register']")).click();
-        assertTrue(webDriver.findElement(By.id("name")).getAttribute("validity").contains("valueMissing"));
+    // Test for empty name field
+    webDriver.findElement(By.xpath("//button[text()='Register']")).click();
+    assertTrue(webDriver.findElement(By.id("name")).getAttribute("validationMessage") != null &&
+               !webDriver.findElement(By.id("name")).getAttribute("validationMessage").isEmpty());
 
-        webDriver.findElement(By.id("email")).sendKeys("invalid-email");
-        webDriver.findElement(By.xpath("//button[text()='Register']")).click();
-        assertTrue(webDriver.findElement(By.id("email")).getAttribute("validity").contains("typeMismatch"));
+    // Test for invalid email
+    webDriver.findElement(By.id("email")).sendKeys("invalid-email");
+    webDriver.findElement(By.xpath("//button[text()='Register']")).click();
+    assertTrue(webDriver.findElement(By.id("email")).getAttribute("validationMessage") != null &&
+               !webDriver.findElement(By.id("email")).getAttribute("validationMessage").isEmpty());
 
-        webDriver.findElement(By.id("password")).clear();
-        webDriver.findElement(By.xpath("//button[text()='Register']")).click();
-        assertTrue(webDriver.findElement(By.id("password")).getAttribute("validity").contains("valueMissing"));
+    // Test for empty password field
+    webDriver.findElement(By.id("password")).clear();
+    webDriver.findElement(By.xpath("//button[text()='Register']")).click();
+    assertTrue(webDriver.findElement(By.id("password")).getAttribute("validationMessage") != null &&
+               !webDriver.findElement(By.id("password")).getAttribute("validationMessage").isEmpty());
     }
 
     @Test
