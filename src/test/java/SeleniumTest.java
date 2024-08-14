@@ -114,3 +114,4 @@ public class SeleniumTest {
         assertEquals("Other", genderSelect.getFirstSelectedOption().getText());
     }
 }
+
